@@ -1,13 +1,76 @@
 h1 {
   text-align: center;
   font-size: 72px;
-  background-color:darkgray;
+  background-color:rgb(230, 227, 227);
   border-bottom: rgb(89, 86, 86);
   border-style: solid;
+  margin-bottom: 0px;
+}
 
+img {
+  height:60px ;
+  width:70px ;
 }
 
 .side {
   background-color: rgb(230, 227, 227);
-  padding: 5px 10px 20px 10px;
+  padding: 5px 5px 20px 10px;
+}
+
+.row {
+width: 100%;
+}
+
+.data-container {
+  margin-right: 0%;
+}
+
+.today {
+  border-style: dashed;
+  border-color: rgb(136, 136, 138);
+  border-width: 2px;
+  border-radius: 5px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.btn {
+  color: white;
+  background-color: blue;
+}
+.btn:hover {
+  background-color: rgb(101, 121, 236);
+}
+
+.card {
+  padding: 5px;
+  margin: 5px;
+}
+
+.cardOne {
+  background-color: aliceblue;
+  text-align: center;
+}
+
+.search-text {
+  margin: 5px;
+}
+
+.future {
+  background-color: antiquewhite;
+  padding-top: 10px;
+}
+
+.future-list{
+  background-color: white;
+  text-align: justify
+}
+
+.futureText {
+  border:  rgb(136, 136, 138) solid;
+  border-radius: 5px;
+  margin: 1%;
+  padding: 1%;
+  width: 20%;
+  display: inline-block;
 }
