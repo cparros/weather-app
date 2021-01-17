@@ -11,13 +11,45 @@
   <header>
     <h1>Your Weather Dashboard</h1>
   </header>
-    <div class="col-md-4 side">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 side">
       Search for a city:
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+        <form class="d-flex">
+          <input class="form-control search-text" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <div class="card cardOne">
+          <div class="card-body">
+            Recent Searches 
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 data-container future">
+      
+      <div class="container">
+        <div class="row">
+        <div class="col-md-12 today">
+          Current Weather Will Be Displayed Here
+        </div>
+        </div>
+      </div>
+        <div class="container">
+          <div class="row">
+          <div class="col-md-12 future-list">
+            <h4>5 Day Forecast:</h4> 
+          </div>
+      </div>
+     </div>
+    </div> 
     </div>
-  
+    </div>
+  </div>
 </body>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+  <script src="script.js"></script>
 </html>
