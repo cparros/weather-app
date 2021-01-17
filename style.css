@@ -26,7 +26,7 @@ width: 100%;
 }
 
 .today {
-  border-style: dashed;
+  border-style: Solid;
   border-color: rgb(136, 136, 138);
   border-width: 2px;
   border-radius: 5px;
@@ -68,7 +68,7 @@ width: 100%;
 
 .futureText {
   border:  rgb(136, 136, 138) solid;
-  border-radius: 5px;
+  border-radius: 2px;
   margin: 1%;
   padding: 1%;
   width: 20%;
