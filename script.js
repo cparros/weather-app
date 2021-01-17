@@ -71,12 +71,32 @@ var populate = function (text) {
       apiKey,
     method: "GET",
   }).then(function (response) {
+    console.log(response)
     var uVIndex = response.value;
     currentDataUVDiv
       .append($('<p class="indexUV">'))
       .text("UV Index: " + uVIndex);
-    currentDataHolder.append(currentDataUVDiv);
-
+    currentDataHolder.append(currentDataUVDiv)
+    if(uVIndex < 3) {
+      console.log('true')
+      currentDataUVDiv.attr('id', 'low')
+      console.log(currentDataUVDiv.text())
+    } 
+    if(uVIndex > 2 && uVIndex < 6) {
+      console.log('true')
+      currentDataUVDiv.attr('id', 'med')
+      console.log(currentDataUVDiv.text())
+    } 
+    if(uVIndex > 6 && uVIndex < 8) {
+      console.log('true')
+      currentDataUVDiv.attr('id', 'high')
+      console.log(currentDataUVDiv.text())
+    } 
+    if(uVIndex > 8) {
+      console.log('true')
+      currentDataUVDiv.attr('id', 'dangerous')
+      console.log(currentDataUVDiv.text())
+    } 
     $.ajax({
       url:
         "http://api.openweathermap.org/data/2.5/forecast?q=" +
@@ -155,3 +175,4 @@ function submitAction(e) {
 }
 
 button.click(submitAction);
+

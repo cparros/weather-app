@@ -74,3 +74,23 @@ width: 100%;
   width: 20%;
   display: inline-block;
 }
+
+#low{
+  background-color: green;
+}
+
+#med {
+  background-color: yellow;
+}
+
+#high {
+  background-color: red;
+}
+
+#dangerous {
+  background-color: plum;
+}
+
+#low, #med, #high #dangerous {
+  width: 16%;
+}
