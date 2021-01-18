@@ -5,7 +5,7 @@ body {
 h1 {
   text-align: center;
   font-size: 72px;
-  background-color:rgb(230, 227, 227);
+  background-color: whitesmoke;
   border-bottom: rgb(89, 86, 86);
   border-style: solid;
   margin-bottom: 0px;
@@ -78,6 +78,7 @@ width: 100%;
 
 .futureText {
   border:  rgb(136, 136, 138) solid;
+  background-color: rgb(230, 227, 227);
   border-radius: 5px;
   margin: 1%;
   padding: 1%;
