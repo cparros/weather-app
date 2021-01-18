@@ -22,6 +22,7 @@ var populate = function (text) {
     apiKey,
   method: "GET",
 }).then(function (response) {
+  console.log(response)
   var weather = response.weather[0].main;
   var lat = response.coord.lat;
   var lon = response.coord.lon;
@@ -44,21 +45,24 @@ var populate = function (text) {
   currentDataHolder.append(currentDataTemp);
   currentDataHolder.append(currentDataHumid);
   currentDataHolder.append(currentDataWind);
+
+  var imgIcon = "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
   
   if (weather === "Clear") {
-    img.attr("src", "./images/sunny.png");
+    img.attr("src", imgIcon);
+    console.log(response.weather.icon)
     currentDataDate.append(img);
   }
   if (weather === "Clouds") {
-    img.attr("src", "./images/cloudy.png");
+    img.attr("src", imgIcon);
     currentDataDate.append(img);
   }
   if (weather === "Rain") {
-    img.attr("src", "./images/rain.png");
+    img.attr("src", imgIcon);
     currentDataDate.append(img);
   }
   if (weather === "Partly Sunny") {
-    img.attr("src", "./images/partlySunny.png");
+    img.attr("src", imgIcon);
     currentDataDate.append(img);
   }
   $.ajax({
@@ -71,31 +75,23 @@ var populate = function (text) {
       apiKey,
     method: "GET",
   }).then(function (response) {
-    console.log(response)
     var uVIndex = response.value;
     currentDataUVDiv
       .append($('<p class="indexUV">'))
       .text("UV Index: " + uVIndex);
     currentDataHolder.append(currentDataUVDiv)
     if(uVIndex < 3) {
-      console.log('true')
       currentDataUVDiv.attr('id', 'low')
       console.log(currentDataUVDiv.text())
     } 
     if(uVIndex > 2 && uVIndex < 6) {
-      console.log('true')
       currentDataUVDiv.attr('id', 'med')
-      console.log(currentDataUVDiv.text())
     } 
     if(uVIndex > 6 && uVIndex < 8) {
-      console.log('true')
       currentDataUVDiv.attr('id', 'high')
-      console.log(currentDataUVDiv.text())
     } 
     if(uVIndex > 8) {
-      console.log('true')
       currentDataUVDiv.attr('id', 'dangerous')
-      console.log(currentDataUVDiv.text())
     } 
     $.ajax({
       url:
@@ -105,6 +101,7 @@ var populate = function (text) {
         apiKey,
       method: "GET",
     }).then(function (response) {
+      console.log(response)
       var fiveDayInfo = [
         response.list[8],
         response.list[16],
@@ -122,21 +119,24 @@ var populate = function (text) {
         var humid = index.main.humidity;
         var betterDate = date.slice(0, 10);
 
+        var forecastImgIcon = "https://openweathermap.org/img/w/" + index.weather[0].icon + ".png"
+
         futureDataDiv.append($("<p>").text(betterDate));
         futureDataDiv.append($("<p>").text("Temp: " + temp + "°F"));
         futureDataDiv.append($("<p>").text("Humidity: " + humid));
 
+
         if (weatherforecast === "Clear") {
-          forecastImg.attr("src", "./images/sunny.png");
+          forecastImg.attr("src", forecastImgIcon);
           futureDataDiv.append(forecastImg);
         } else if (weatherforecast === "Clouds") {
-          forecastImg.attr("src", "./images/cloudy.png");
+          forecastImg.attr("src", forecastImgIcon);
           futureDataDiv.append(forecastImg);
         } else if (weatherforecast === "Rain") {
-          forecastImg.attr("src", "./images/rain.png");
+          forecastImg.attr("src", forecastImgIcon);
           futureDataDiv.append(forecastImg);
         } else if (weatherforecast === "Partly Sunny") {
-          forecastImg.attr("src", "./images/partlySunny.png");
+          forecastImg.attr("src", forecastImgIcon);
           futureDataDiv.append(forecastImg);
         } else {
           return;
