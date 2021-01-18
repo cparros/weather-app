@@ -5,4 +5,4 @@ Simply search the city who's current and 5 day weather forcast you would like to
 
 Link to working application: https://cparros.github.io/weather-app/
 
-[!screenshot](./images/weather-app.png)
+![screenshot](./images/weather-app.png)
