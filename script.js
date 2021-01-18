@@ -34,6 +34,7 @@ var populate = function (text) {
 
   //Then define variables and get response for weather latitude longitude temp and weather icon
 }).then(function (response) {
+  console.log(response)
   var weather = response.weather[0].main;
   var lat = response.coord.lat;
   var lon = response.coord.lon;
@@ -52,7 +53,7 @@ var populate = function (text) {
     .text("Humidity: " + response.main.humidity + "%");
   currentDataWind
     .append($("<p>"))
-    .text("Wind Speed: " + response.wind.deg + "mph");
+    .text("Wind Speed: " + response.wind.speed + " mph");
 
   currentDataHolder.append(currentDataDate);
   currentDataHolder.append(currentDataTemp);
