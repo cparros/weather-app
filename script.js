@@ -1,5 +1,3 @@
-
-
 var button = $(".btn");
 var currentDataDate = $("<div>");
 var currentDataTemp = $("<div>");
@@ -172,16 +170,13 @@ function submitAction(e) {
     var origin = $(".cardOne");
     var newCard = $('<div class="card card-body">');
     
-
     origin.append(newCard);
     newCard.append($('<div class="card-body">').text(text));
     newCard.click(function(){
     populate(text)
     })
-    
     populate(text)
   }
 }
-
 button.click(submitAction);
 

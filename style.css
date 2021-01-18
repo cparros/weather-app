@@ -1,3 +1,7 @@
+body {
+  background-color: antiquewhite;
+}
+
 h1 {
   text-align: center;
   font-size: 72px;
@@ -14,6 +18,7 @@ img {
 
 .side {
   background-color: rgb(230, 227, 227);
+  border-radius: 5px;
   padding: 5px 5px 20px 10px;
 }
 
@@ -30,8 +35,9 @@ width: 100%;
   border-color: rgb(136, 136, 138);
   border-width: 2px;
   border-radius: 5px;
-  background-color: white;
+  background-color: whitesmoke;
   margin-bottom: 10px;
+  padding: 5px;
 }
 
 .btn {
@@ -62,13 +68,14 @@ width: 100%;
 }
 
 .future-list{
-  background-color: white;
-  text-align: justify
+  background-color: whitesmoke;
+  text-align: justify;
+  border-radius: 5px;
 }
 
 .futureText {
   border:  rgb(136, 136, 138) solid;
-  border-radius: 2px;
+  border-radius: 5px;
   margin: 1%;
   padding: 1%;
   width: 20%;
@@ -76,7 +83,7 @@ width: 100%;
 }
 
 #low{
-  background-color: green;
+  background-color: rgb(12, 177, 12);
 }
 
 #med {
