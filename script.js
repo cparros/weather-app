@@ -66,7 +66,7 @@ var populate = function (text) {
   }
   $.ajax({
     url:
-      "http://api.openweathermap.org/data/2.5/uvi?lat=" +
+      "https://api.openweathermap.org/data/2.5/uvi?lat=" +
       lat +
       "&lon=" +
       lon +
@@ -102,7 +102,7 @@ var populate = function (text) {
     } 
     $.ajax({
       url:
-        "http://api.openweathermap.org/data/2.5/forecast?q=" +
+        "https://api.openweathermap.org/data/2.5/forecast?q=" +
         text +
         "&appid=" +
         apiKey,
