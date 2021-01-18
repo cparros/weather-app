@@ -1,5 +1,5 @@
 
-
+//Define Variable for btn and data divs for data that I wish to return
 var button = $(".btn");
 var currentDataDate = $("<div>");
 var currentDataTemp = $("<div>");
@@ -8,14 +8,22 @@ var currentDataWind = $("<div>");
 var currentDataHolder = $(".today");
 var currentDataUVDiv = $("<div>");
 var img = $("<img>");
+
+//Define API key
 var apiKey = "0fc4f1a65ec726d23f716b2895e1e1b1";
+
+//Get local storage
 var localText = localStorage.getItem('searchText') || []
 
+//create populate function
 var populate = function (text) {
+
+  //Clear display divs when populate is run so that information is not stacking
   $("h3").empty();
   $(".today").empty();
   $(".future-list").empty();
 
+//AJAX call to get weather info for current day
   $.ajax({
   url:
     "http://api.openweathermap.org/data/2.5/weather?q=" +
@@ -23,6 +31,8 @@ var populate = function (text) {
     "&appid=" +
     apiKey,
   method: "GET",
+
+  //Then define variables and get response for weather latitude longitude temp and weather icon
 }).then(function (response) {
   var weather = response.weather[0].main;
   var lat = response.coord.lat;
@@ -30,6 +40,7 @@ var populate = function (text) {
   var temperature = (response.main.temp * (9 / 5) - 459.67).toFixed(0);
   var imgIcon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
 
+  //Append the response data to the div
   currentDataDate.append(
     $("<h3>").text("Today- " + dayjs().format("MM-DD-YYYY") + " " + text)
   );
@@ -48,6 +59,7 @@ var populate = function (text) {
   currentDataHolder.append(currentDataHumid);
   currentDataHolder.append(currentDataWind);
   
+  //Display the correct image for the weather data returned
   if (weather === "Clear") {
     img.attr("src", imgIcon);
     currentDataDate.append(img);
@@ -64,6 +76,8 @@ var populate = function (text) {
     img.attr("src", imgIcon);
     currentDataDate.append(img);
   }
+
+  //AJAX call for next 5 day data
   $.ajax({
     url:
       "http://api.openweathermap.org/data/2.5/uvi?lat=" +
@@ -75,11 +89,14 @@ var populate = function (text) {
     method: "GET",
   }).then(function (response) {
     console.log(response)
+    // Get UV info and append
     var uVIndex = response.value;
     currentDataUVDiv
       .append($('<p class="indexUV">'))
       .text("UV Index: " + uVIndex);
     currentDataHolder.append(currentDataUVDiv)
+
+    //Depending on UV value display the color as background
     if(uVIndex < 3) {
       console.log('true')
       currentDataUVDiv.attr('id', 'low')
@@ -100,6 +117,8 @@ var populate = function (text) {
       currentDataUVDiv.attr('id', 'dangerous')
       console.log(currentDataUVDiv.text())
     } 
+
+    //AJAX call for 5 day data. (get response index to match NEXT DAY. 3 hour increments of index)
     $.ajax({
       url:
         "http://api.openweathermap.org/data/2.5/forecast?q=" +
@@ -116,6 +135,7 @@ var populate = function (text) {
         response.list[39],
       ];
 
+      //For each day get desired info and Append to divs
       fiveDayInfo.forEach(function (index) {
         var weatherforecast = index.weather[0].main;
         var futureDataDiv = $('<div class="futureText">');
@@ -130,6 +150,7 @@ var populate = function (text) {
         futureDataDiv.append($("<p>").text("Temp: " + temp + "°F"));
         futureDataDiv.append($("<p>").text("Humidity: " + humid));
 
+        //Display Correct weather image
         if (weatherforecast === "Clear") {
           forecastImg.attr("src", forecastImgIcon);
           futureDataDiv.append(forecastImg);
@@ -145,6 +166,7 @@ var populate = function (text) {
         } else {
           return;
         }
+        //Append future data to future list div
         $(".future-list").append(futureDataDiv);
       });
     });
@@ -152,12 +174,14 @@ var populate = function (text) {
 });
 }
 
+// If local storage is full run populate with saved city text. (for reload)
 if(localText !== null){
   console.log(localText)
   var text = localText
   populate(text)
 }
 
+//Button press/submit action
 function submitAction(e) {
   e.preventDefault();
 
@@ -165,16 +189,21 @@ function submitAction(e) {
   $(".today").empty();
   $(".future-list").empty();
   
+  //Get search value
   var text = $(".search-text").val();
 
+  //Set local Storage to search value text
   localStorage.setItem('searchText', text)
 
+  //If text is EMPTY do nothing...I think this block of code is where my error is?
   if (text === "") {
     return;
   } else {
+
+    //Append search items to new card in recent search div
     var origin = $(".cardOne");
     var newCard = $('<div class="card card-body">');
-    
+  
     origin.append(newCard);
     newCard.append($('<div class="card-body">').text(text));
     newCard.click(function(){
@@ -183,5 +212,7 @@ function submitAction(e) {
     populate(text)
   }
 }
+
+//Add button click event
 button.click(submitAction);
 
