@@ -18,7 +18,7 @@ var populate = function (text) {
 
   $.ajax({
   url:
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    "http://api.openweathermap.org/data/2.5/weather?q=" +
     text +
     "&appid=" +
     apiKey,
@@ -28,7 +28,7 @@ var populate = function (text) {
   var lat = response.coord.lat;
   var lon = response.coord.lon;
   var temperature = (response.main.temp * (9 / 5) - 459.67).toFixed(0);
-  var imgIcon = "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
+  var imgIcon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
 
   currentDataDate.append(
     $("<h3>").text("Today- " + dayjs().format("MM-DD-YYYY") + " " + text)
@@ -66,7 +66,7 @@ var populate = function (text) {
   }
   $.ajax({
     url:
-      "https://api.openweathermap.org/data/2.5/uvi?lat=" +
+      "http://api.openweathermap.org/data/2.5/uvi?lat=" +
       lat +
       "&lon=" +
       lon +
@@ -102,7 +102,7 @@ var populate = function (text) {
     } 
     $.ajax({
       url:
-        "https://api.openweathermap.org/data/2.5/forecast?q=" +
+        "http://api.openweathermap.org/data/2.5/forecast?q=" +
         text +
         "&appid=" +
         apiKey,
@@ -124,7 +124,7 @@ var populate = function (text) {
         var temp = (index.main.temp * (9 / 5) - 459.67).toFixed(0);
         var humid = index.main.humidity;
         var betterDate = date.slice(0, 10);
-        var forecastImgIcon = "https://openweathermap.org/img/w/" + index.weather[0].icon + ".png"
+        var forecastImgIcon = "http://openweathermap.org/img/w/" + index.weather[0].icon + ".png"
 
         futureDataDiv.append($("<p>").text(betterDate));
         futureDataDiv.append($("<p>").text("Temp: " + temp + "°F"));

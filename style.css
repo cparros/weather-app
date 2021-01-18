@@ -72,6 +72,8 @@ width: 100%;
   text-align: justify;
   border-radius: 5px;
   border: rgb(136, 136, 138) solid;;
+  margin: 1%;
+  padding: 1%;
 }
 
 .futureText {
