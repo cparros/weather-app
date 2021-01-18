@@ -1,3 +1,5 @@
+
+
 var button = $(".btn");
 var currentDataDate = $("<div>");
 var currentDataTemp = $("<div>");
@@ -22,11 +24,11 @@ var populate = function (text) {
     apiKey,
   method: "GET",
 }).then(function (response) {
-  console.log(response)
   var weather = response.weather[0].main;
   var lat = response.coord.lat;
   var lon = response.coord.lon;
   var temperature = (response.main.temp * (9 / 5) - 459.67).toFixed(0);
+  var imgIcon = "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
 
   currentDataDate.append(
     $("<h3>").text("Today- " + dayjs().format("MM-DD-YYYY") + " " + text)
@@ -45,12 +47,9 @@ var populate = function (text) {
   currentDataHolder.append(currentDataTemp);
   currentDataHolder.append(currentDataHumid);
   currentDataHolder.append(currentDataWind);
-
-  var imgIcon = "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
   
   if (weather === "Clear") {
     img.attr("src", imgIcon);
-    console.log(response.weather.icon)
     currentDataDate.append(img);
   }
   if (weather === "Clouds") {
@@ -75,23 +74,31 @@ var populate = function (text) {
       apiKey,
     method: "GET",
   }).then(function (response) {
+    console.log(response)
     var uVIndex = response.value;
     currentDataUVDiv
       .append($('<p class="indexUV">'))
       .text("UV Index: " + uVIndex);
     currentDataHolder.append(currentDataUVDiv)
     if(uVIndex < 3) {
+      console.log('true')
       currentDataUVDiv.attr('id', 'low')
       console.log(currentDataUVDiv.text())
     } 
     if(uVIndex > 2 && uVIndex < 6) {
+      console.log('true')
       currentDataUVDiv.attr('id', 'med')
+      console.log(currentDataUVDiv.text())
     } 
     if(uVIndex > 6 && uVIndex < 8) {
+      console.log('true')
       currentDataUVDiv.attr('id', 'high')
+      console.log(currentDataUVDiv.text())
     } 
     if(uVIndex > 8) {
+      console.log('true')
       currentDataUVDiv.attr('id', 'dangerous')
+      console.log(currentDataUVDiv.text())
     } 
     $.ajax({
       url:
@@ -101,7 +108,6 @@ var populate = function (text) {
         apiKey,
       method: "GET",
     }).then(function (response) {
-      console.log(response)
       var fiveDayInfo = [
         response.list[8],
         response.list[16],
@@ -118,13 +124,11 @@ var populate = function (text) {
         var temp = (index.main.temp * (9 / 5) - 459.67).toFixed(0);
         var humid = index.main.humidity;
         var betterDate = date.slice(0, 10);
-
         var forecastImgIcon = "https://openweathermap.org/img/w/" + index.weather[0].icon + ".png"
 
         futureDataDiv.append($("<p>").text(betterDate));
         futureDataDiv.append($("<p>").text("Temp: " + temp + "°F"));
         futureDataDiv.append($("<p>").text("Humidity: " + humid));
-
 
         if (weatherforecast === "Clear") {
           forecastImg.attr("src", forecastImgIcon);
@@ -160,6 +164,7 @@ function submitAction(e) {
   $("h3").empty();
   $(".today").empty();
   $(".future-list").empty();
+  
   var text = $(".search-text").val();
 
   localStorage.setItem('searchText', text)
