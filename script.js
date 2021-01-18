@@ -1,3 +1,5 @@
+
+
 var button = $(".btn");
 var currentDataDate = $("<div>");
 var currentDataTemp = $("<div>");
@@ -6,8 +8,8 @@ var currentDataWind = $("<div>");
 var currentDataHolder = $(".today");
 var currentDataUVDiv = $("<div>");
 var img = $("<img>");
-var card = $('.card card-body')
 var apiKey = "0fc4f1a65ec726d23f716b2895e1e1b1";
+var localText = localStorage.getItem('searchText') || []
 
 var populate = function (text) {
   $("h3").empty();
@@ -148,14 +150,21 @@ var populate = function (text) {
 });
 }
 
+if(localText !== null){
+  console.log(localText)
+  var text = localText
+  populate(text)
+}
+
 function submitAction(e) {
   e.preventDefault();
 
-  console.log($('.card-body'))
   $("h3").empty();
   $(".today").empty();
   $(".future-list").empty();
   var text = $(".search-text").val();
+
+  localStorage.setItem('searchText', text)
 
   if (text === "") {
     return;
